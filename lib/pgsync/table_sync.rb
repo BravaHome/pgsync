@@ -141,8 +141,6 @@ module PgSync
           data_type AS type
         FROM
           information_schema.columns
-        WHERE
-          is_generated = 'NEVER'
         ORDER BY 1, 2, 3
       SQL
       data_source.execute(query).group_by { |r| Table.new(r["schema"], r["table"]) }.map do |k, v|
